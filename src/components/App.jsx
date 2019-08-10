@@ -6,7 +6,8 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            films: []
+            films: [],
+            hasLoaded: false
         };
     }
 
@@ -17,18 +18,36 @@ class App extends React.Component {
             .catch(e => console.log(e));
     }
 
-    render() {
+    loadFilms(e) {
         return (
-            <main className="container">
-                <section className="row">
-                    {this.state.films.map(film => {
-                        return (<Card film={film} />)
-                    })
-                    }
-                </section>
-            </main>
-
+            this.setState({
+                hasLoaded: true
+            })
         )
+    }
+
+
+    render() {
+        if (this.state.hasLoaded === true) {
+            return (
+                <main className="container">
+                    <section className="row justify-content-center">
+                        <div>
+                            <h1 className="">Must Watch Films</h1>
+                        </div>
+                        <div>
+                            {this.state.films.map(film => {
+                                return (<Card film={film} />)
+                            })}
+                        </div> 
+                    </section>
+                </main>
+            )
+        } else {
+            return(
+                <button onClick={(e) => this.loadFilms(e)} className="m-2 btn-primary btn-small">Load Films</button>
+            )
+        }
     }
 }
 
