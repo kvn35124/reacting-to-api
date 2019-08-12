@@ -1,6 +1,6 @@
 import React from 'react';
 
-let Card = (props) => {
+let FilmCard = (props) => {
     return (
         <>
             <div className="card border border-dark m-2">
@@ -15,4 +15,4 @@ let Card = (props) => {
 
 
 
-export default Card;
+export default FilmCard;
